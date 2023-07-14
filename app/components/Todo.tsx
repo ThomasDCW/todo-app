@@ -1,16 +1,19 @@
 "use client";
+import { UUID } from "crypto";
 import { useState } from "react";
 
 interface TodoProps {
+  id: UUID;
   title: string;
 }
 
-export default function Todo({ title }: TodoProps) {
+export default function Todo({ id, title }: TodoProps) {
   const [checked, setChecked] = useState(false);
   console.log(checked);
   return (
     <div className='space-x-6 p-4 flex justify-between items-center my-4 w-10/12 sm:w-8/12 md:w-7/12 lg:w-2/6  mx-auto shadow-md rounded-md'>
       <input
+        id={id}
         type='checkbox'
         className='checkbox checkbox-primary'
         onClick={() => setChecked(!checked)}

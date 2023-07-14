@@ -13,7 +13,7 @@ export default function Home() {
         <>
           {todos.map((t) => (
             <div key={t.id}>
-              <Todo title={t.title} />
+              <Todo id={t.id} title={t.title} />
             </div>
           ))}
         </>
