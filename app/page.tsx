@@ -1,14 +1,21 @@
+"use client";
 import Todo from "./components/Todo";
 import Todos from "./containers/Todos";
+import { useAppSelector } from "./redux/hooks";
 
 export default function Home() {
+  const todos = useAppSelector((state) => state.todosReducer.todos);
+  console.log(todos);
+
   return (
     <main className='flex flex-col mx-auto'>
       <Todos>
         <>
-          <Todo title='Hello world' />
-          <Todo title='Todo Application' />
-          <Todo title='Coded in Nextjs' />
+          {todos.map((t) => (
+            <div key={t.id}>
+              <Todo title={t.title} />
+            </div>
+          ))}
         </>
       </Todos>
     </main>
