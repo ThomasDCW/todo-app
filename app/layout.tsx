@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import { Providers } from "./redux/providers";
 import "./globals.css";
 
 export const metadata = {
@@ -15,7 +16,7 @@ export default function RootLayout({
     <html lang='en' data-theme='corporate'>
       <body className='h-screen'>
         <Header />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
