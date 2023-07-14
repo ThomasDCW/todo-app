@@ -5,7 +5,6 @@ import { useAppSelector } from "./redux/hooks";
 
 export default function Home() {
   const todos = useAppSelector((state) => state.todosReducer.todos);
-  console.log(todos);
 
   return (
     <main className='flex flex-col mx-auto'>

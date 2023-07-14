@@ -1,9 +1,9 @@
 "use client";
-import { UUID } from "crypto";
+
 import { useState } from "react";
 
 interface TodoProps {
-  id: UUID;
+  id: string;
   title: string;
 }
 

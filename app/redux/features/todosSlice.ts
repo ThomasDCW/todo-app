@@ -1,28 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UUID } from "crypto";
 
-type Todo = {
-  id: UUID;
+export type Todo = {
+  id: string;
   title: string;
 };
 
-type Todos = {
+type TodosState = {
   todos: Todo[];
+  currentTodo: Todo | null;
 };
 
-const initialState = {
+const initialState: TodosState = {
   todos: [],
-} as Todos;
+  currentTodo: null,
+};
 
-export const todos = createSlice({
+const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    reset: () => initialState,
-    getTodos: (state) => {
-      state.todos;
+    resetTodos: () => initialState,
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos.push(action.payload);
+    },
+    setCurrentTodo: (state, action: PayloadAction<Todo>) => {
+      state.currentTodo = action.payload;
+    },
+    resetCurrentTodo: (state) => {
+      state.currentTodo = null;
     },
   },
 });
-export const { getTodos } = todos.actions;
-export default todos.reducer;
+
+export const { addTodo, setCurrentTodo, resetCurrentTodo, resetTodos } =
+  todosSlice.actions;
+
+export default todosSlice.reducer;
