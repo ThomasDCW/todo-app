@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useAppDispatch } from "../redux/hooks";
+import { removeTodo } from "../redux/features/todosSlice";
 
 interface TodoProps {
   id: string;
@@ -8,8 +10,11 @@ interface TodoProps {
 }
 
 export default function Todo({ id, title }: TodoProps) {
+  const dispatch = useAppDispatch();
   const [checked, setChecked] = useState(false);
-  console.log(checked);
+  const handleRemoveTodo = (id: string) => {
+    dispatch(removeTodo(id));
+  };
   return (
     <div className='space-x-6 p-4 flex justify-between items-center my-4 w-10/12 sm:w-8/12 md:w-7/12 lg:w-2/6  mx-auto shadow-md rounded-md'>
       <input
@@ -18,8 +23,14 @@ export default function Todo({ id, title }: TodoProps) {
         className='checkbox checkbox-primary'
         onClick={() => setChecked(!checked)}
       />
-      <span className={!checked ? "" : "line-through"}>{title}</span>
-      <button type='button'>
+      <span
+        className={`overflow-auto break-words ${
+          !checked ? "" : "line-through"
+        }`}
+      >
+        {title}
+      </span>
+      <button type='button' onClick={() => handleRemoveTodo(id)}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

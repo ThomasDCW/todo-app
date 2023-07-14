@@ -24,16 +24,12 @@ const todosSlice = createSlice({
     addTodo: (state, action: PayloadAction<Todo>) => {
       state.todos.push(action.payload);
     },
-    setCurrentTodo: (state, action: PayloadAction<Todo>) => {
-      state.currentTodo = action.payload;
-    },
-    resetCurrentTodo: (state) => {
-      state.currentTodo = null;
+    removeTodo: (state, action: PayloadAction<string>) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
   },
 });
 
-export const { addTodo, setCurrentTodo, resetCurrentTodo, resetTodos } =
-  todosSlice.actions;
+export const { addTodo, removeTodo, resetTodos } = todosSlice.actions;
 
 export default todosSlice.reducer;

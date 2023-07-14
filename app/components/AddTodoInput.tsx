@@ -24,6 +24,7 @@ export default function AddTodoInput() {
         type='text'
         placeholder='Add a todo'
         className='input input-bordered w-full max-w-xs'
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <button type='submit' className='btn btn-square btn-primary'>
