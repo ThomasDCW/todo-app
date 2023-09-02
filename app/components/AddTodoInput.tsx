@@ -21,6 +21,7 @@ export default function AddTodoInput() {
   return (
     <form className='flex my-4 justify-center ' onSubmit={handleAddTodo}>
       <input
+        required
         type='text'
         placeholder='Add a todo'
         className='input input-bordered w-full max-w-xs'
